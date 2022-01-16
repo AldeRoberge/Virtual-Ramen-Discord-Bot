@@ -5,8 +5,9 @@ namespace VirtualRamenDiscordBot.Channels.Roles.SelectableRoles
 {
     public class FireCampsRole : SelectableRole
     {
-        public override string Name =>  "Fire Camps";
+        public override string Name => "Fire Camps";
         public override IEmote Emote => new Emoji("📅");
+
         public override EmbedBuilder EmbedBuilder => new()
         {
             Title = Name,
@@ -15,7 +16,5 @@ namespace VirtualRamenDiscordBot.Channels.Roles.SelectableRoles
             Color = Color.Red,
             ThumbnailUrl = "https://cdn.discordapp.com/emojis/846139999925698560.png?v=1"
         };
-        
- 
     }
 }

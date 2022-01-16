@@ -8,6 +8,8 @@
     {
         Roles,
         Welcome,
+        Rules,
+        Info,
         All
     }
 }

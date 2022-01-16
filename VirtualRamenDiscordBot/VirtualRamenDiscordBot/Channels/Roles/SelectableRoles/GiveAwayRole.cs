@@ -7,6 +7,7 @@ namespace VirtualRamenDiscordBot.Channels.Roles.SelectableRoles
     {
         public override string Name => "Giveaways";
         public override IEmote Emote => new Emoji("🎁");
+
         public override EmbedBuilder EmbedBuilder => new()
         {
             Title = Name,
@@ -15,10 +16,5 @@ namespace VirtualRamenDiscordBot.Channels.Roles.SelectableRoles
             Color = Color.Purple,
             ThumbnailUrl = "https://cdn.discordapp.com/emojis/840957384394670111.png?v=1"
         };
-        
-        
-        
-        
-        
     }
 }

@@ -13,13 +13,12 @@ namespace VirtualRamenDiscordBot.Channels.Roles
     /// </summary>
     public class RolesChannel : ChannelGenerator
     {
-        public override ChannelsEnum ChannelsEnum => ChannelsEnum.Roles;
-
         public override Channel Channel => new()
         {
             Id = ChannelConstants.Roles,
             Name = "「🔎」roles",
-            Topic = "Permet de sélectionner ses propres rôles."
+            Topic = "Permet de sélectionner ses propres rôles.",
+            ChannelsEnum = ChannelsEnum.Roles
         };
 
         public List<SelectableRole> SelectableRoles;
@@ -31,7 +30,7 @@ namespace VirtualRamenDiscordBot.Channels.Roles
 
         public override void PopulateMessages(MessageContainer messageContainer)
         {
-            messageContainer.AddImage("Channels/Roles/Notifications.jpg");
+            messageContainer.AddImage("Channels/Roles/Notifications.png");
 
             List<IEmote> emotes = new List<IEmote>();
             Console.WriteLine("Loading " + SelectableRoles.Count + " selectable roles...");

@@ -208,6 +208,8 @@
         <Compile Include="Channels\Base\Messages\EmbedMessage.cs" />
         <Compile Include="Channels\Base\Messages\ImageMessage.cs" />
         <Compile Include="Channels\Base\Messages\TextMessage.cs" />
+        <Compile Include="Channels\Info\InfoChannel.cs" />
+        <Compile Include="Channels\Rules\RulesChannel.cs" />
         <Compile Include="Channels\Roles\RolesChannel.cs" />
         <Compile Include="Channels\Roles\SelectableRoles\AnnoncesRole.cs" />
         <Compile Include="Channels\Roles\SelectableRoles\AteliersRole.cs" />
@@ -227,6 +229,7 @@
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="RequireOwnerAttribute.cs" />
+        <Compile Include="Utils\GradientGenerator.cs" />
         <Compile Include="Utils\IMessageChannelExtensions.cs" />
     </ItemGroup>
     <ItemGroup>
@@ -236,8 +239,14 @@
       <Folder Include="Services" />
     </ItemGroup>
     <ItemGroup>
-      <Content Include="Channels\Roles\Notifications.jpg">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <Content Include="Channels\Info\Info.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Channels\Rules\Rules.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Channels\Roles\Notifications.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <Content Include="Channels\Welcome\Welcome.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -11,7 +11,6 @@ namespace VirtualRamenDiscordBot.Channels.Generators.Base
     {
         public abstract Channel Channel { get; }
 
-        public abstract ChannelsEnum ChannelsEnum { get; }
 
         /// <summary>
         /// Passes messageContainer to be filled with Messages.

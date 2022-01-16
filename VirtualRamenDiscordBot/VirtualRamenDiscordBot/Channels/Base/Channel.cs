@@ -9,6 +9,7 @@
     {
         public ulong Id;
         public string Name;
+        public ChannelsEnum ChannelsEnum;
 
         /// <summary>
         /// The channel description (topic) shown at the top.

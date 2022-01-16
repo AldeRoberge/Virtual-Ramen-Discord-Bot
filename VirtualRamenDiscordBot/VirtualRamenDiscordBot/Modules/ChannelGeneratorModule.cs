@@ -47,23 +47,27 @@ namespace VirtualRamenDiscordBot.Modules
         {
             foreach (ChannelGenerator channelGenerator in Channels)
             {
-                if (channelsToUpdate != ChannelsEnum.All && channelsToUpdate != channelGenerator.ChannelsEnum)
+                int skipped = 0;
+
+                if (channelsToUpdate != ChannelsEnum.All && channelsToUpdate != channelGenerator.Channel.ChannelsEnum)
                 {
-                    await ReplyAsync("Skipping channel " + channelGenerator.Channel.Name);
-                    return;
+                    skipped++;
+                    continue;
                 }
+
 
                 // DiscordAPI
                 IMessageChannel c = _client.GetChannelById(channelGenerator.Channel.Id);
 
-                await ReplyAsync("Updating '" + c.Name + "'.");
 
-                await ReplyAsync("Deleting all messages...");
+                Console.WriteLine("Updating channel '" + c.Name + "'. Deleting all messages...");
+
+                await ReplyAsync("Updating channel '" + c.Name + "'.");
                 await c.DeleteAllMessages();
 
                 SocketTextChannel channel = (SocketTextChannel) c;
 
-                await ReplyAsync("Updating channel information...");
+                Console.WriteLine("Updating channel information...");
                 await channel.ModifyAsync(prop =>
                 {
                     prop.Name = channelGenerator.Channel.Name;
@@ -113,6 +117,9 @@ namespace VirtualRamenDiscordBot.Modules
                     }
                 }
             }
+
+
+            await ReplyAsync("Regen completed.");
         }
     }
 

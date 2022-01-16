@@ -7,6 +7,7 @@ namespace VirtualRamenDiscordBot.Channels.Roles.SelectableRoles
     {
         public override string Name => "Annonces";
         public override IEmote Emote => new Emoji("📢");
+
         public override EmbedBuilder EmbedBuilder => new()
         {
             Title = Name,

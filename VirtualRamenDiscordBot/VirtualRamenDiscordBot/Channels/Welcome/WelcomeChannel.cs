@@ -9,13 +9,12 @@ namespace VirtualRamenDiscordBot.Channels.Welcome
     /// </summary>
     public class WelcomeChannel : ChannelGenerator
     {
-        public override ChannelsEnum ChannelsEnum => ChannelsEnum.Welcome;
-
         public override Channel Channel => new()
         {
             Id = ChannelConstants.Welcome,
             Name = "「💬」welcome",
-            Topic = "Allows for some welcome messages to be sent to new members."
+            Topic = "Allows for some welcome messages to be sent to new members.",
+            ChannelsEnum = ChannelsEnum.Welcome
         };
 
         public override void PopulateMessages(MessageContainer messageContainer)

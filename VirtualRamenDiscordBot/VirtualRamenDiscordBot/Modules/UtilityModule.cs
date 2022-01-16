@@ -13,7 +13,7 @@ namespace VirtualRamenDiscordBot.Modules
         private CommandHandler _handler;
 
         // Constructor injection is also a valid way to access the dependecies
-        public UtilityModule ( CommandHandler handler )
+        public UtilityModule(CommandHandler handler)
         {
             _handler = handler;
         }
@@ -22,7 +22,7 @@ namespace VirtualRamenDiscordBot.Modules
         [SlashCommand("ping", "Recieve a pong")]
         // By setting the DefaultPermission to false, you can disable the command by default. No one can use the command until you give them permission
         [DefaultPermission(false)]
-        public async Task Ping ( )
+        public async Task Ping()
         {
             await RespondAsync("pong");
         }
@@ -33,7 +33,7 @@ namespace VirtualRamenDiscordBot.Modules
 
         // [Summary] lets you customize the name and the description of a parameter
         [SlashCommand("echo", "Repeat the input")]
-        public async Task Echo(string echo, [Summary(description: "mention the user")]bool mention = false)
+        public async Task Echo(string echo, [Summary(description: "mention the user")] bool mention = false)
         {
             await RespondAsync(echo + (mention ? Context.User.Mention : string.Empty));
         }

@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Interactions;
+using Discord.WebSocket;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -34,6 +35,8 @@ namespace VirtualRamenDiscordBot
             using var services = ConfigureServices(configuration);
 
             var client = services.GetRequiredService<DiscordAPI>();
+
+
             var commands = services.GetRequiredService<InteractionService>();
 
             client.Log += LogAsync;
@@ -45,8 +48,13 @@ namespace VirtualRamenDiscordBot
             client.Ready += async () =>
             {
                 if (IsDebug())
+                {
                     // Id of the test guild can be provided from the Configuration object
                     await commands.RegisterCommandsToGuildAsync(configuration.GetValue<ulong>("testGuild"), true);
+
+                    // Download all of the members of the guild
+                    await client.GetGuild().DownloadUsersAsync();
+                }
                 else
                     await commands.RegisterCommandsGloballyAsync(true);
             };
@@ -61,6 +69,7 @@ namespace VirtualRamenDiscordBot
             await client.LoginAsync(TokenType.Bot, configuration["token"]);
             await client.StartAsync();
 
+
             await Task.Delay(Timeout.Infinite);
         }
 
@@ -70,11 +79,19 @@ namespace VirtualRamenDiscordBot
             return Task.CompletedTask;
         }
 
+
         static ServiceProvider ConfigureServices(IConfiguration configuration)
         {
             return new ServiceCollection()
                 .AddSingleton(configuration)
-                .AddSingleton<DiscordAPI>()
+                .AddSingleton(x => new DiscordAPI(new DiscordSocketConfig()
+                {
+                    // Sets the members intent
+                    AlwaysDownloadUsers = true,
+                    MessageCacheSize = 50,
+                    LogLevel = LogSeverity.Info,
+                    GatewayIntents = GatewayIntents.All
+                }))
                 .AddSingleton(x => new InteractionService(x.GetRequiredService<DiscordAPI>()))
                 .AddSingleton<CommandHandler>()
                 .BuildServiceProvider();

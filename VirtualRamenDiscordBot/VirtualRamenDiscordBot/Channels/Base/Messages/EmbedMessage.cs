@@ -1,7 +1,7 @@
 ﻿using Discord;
-using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
+using VirtualRamenDiscordBot.Channels.Base.Messages.Base;
 
-namespace VirtualRamenDiscordBot.Channels.Generators.Messages
+namespace VirtualRamenDiscordBot.Channels.Base.Messages
 {
     /// <summary>
     /// An Embed and optional text.

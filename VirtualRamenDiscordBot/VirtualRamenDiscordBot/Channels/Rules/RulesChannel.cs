@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Discord;
-using VirtualRamenDiscordBot.Channels.Generators.Base;
-using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
+using VirtualRamenDiscordBot.Channels.Base;
+using VirtualRamenDiscordBot.Channels.Base.Messages.Base;
 using VirtualRamenDiscordBot.Utils;
 
-namespace VirtualRamenDiscordBot.Channels.Welcome
+namespace VirtualRamenDiscordBot.Channels.Rules
 {
     public class Rule
     {
@@ -67,7 +66,7 @@ namespace VirtualRamenDiscordBot.Channels.Welcome
 
                 messageContainer.AddEmbed(new EmbedBuilder
                 {
-                    Title = "Article " + i,
+                    Title = "Article " + (i + 1),
                     Description = rule.Description,
                     Color = colors[i]
                 });

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Discord;
-using VirtualRamenDiscordBot.Channels.Generators.Base;
-using VirtualRamenDiscordBot.Channels.Generators.Messages;
-using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
+using VirtualRamenDiscordBot.Channels.Base;
+using VirtualRamenDiscordBot.Channels.Base.Messages;
+using VirtualRamenDiscordBot.Channels.Base.Messages.Base;
 using VirtualRamenDiscordBot.Utils;
 
 

@@ -8,6 +8,8 @@ namespace VirtualRamenDiscordBot.Channels.Roles.SelectableRoles
         public override string Name => "Événements";
         public override IEmote Emote => new Emoji("⚒");
 
+        public override string Role => Name;
+        
         public override EmbedBuilder EmbedBuilder => new()
         {
             Title = Name,

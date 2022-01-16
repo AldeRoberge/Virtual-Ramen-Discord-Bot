@@ -6,9 +6,9 @@ using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
 using VirtualRamenDiscordBot.Channels;
-using VirtualRamenDiscordBot.Channels.Generators.Base;
-using VirtualRamenDiscordBot.Channels.Generators.Messages;
-using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
+using VirtualRamenDiscordBot.Channels.Base;
+using VirtualRamenDiscordBot.Channels.Base.Messages;
+using VirtualRamenDiscordBot.Channels.Base.Messages.Base;
 using VirtualRamenDiscordBot.Utils;
 
 namespace VirtualRamenDiscordBot.Modules
@@ -123,25 +123,5 @@ namespace VirtualRamenDiscordBot.Modules
         }
     }
 
-    public static class RelfectionUtil<T>
-    {
-        /// <summary>
-        /// Loads all the classes that inherit from the given type using reflection.
-        /// </summary>
-        public static List<T> Load()
-        {
-            List<T> instances = new List<T>();
-
-            var types = Assembly.GetExecutingAssembly().GetTypes();
-            foreach (var type in types)
-            {
-                if (type.IsSubclassOf(typeof(T)))
-                {
-                    instances.Add((T) Activator.CreateInstance(type));
-                }
-            }
-
-            return instances;
-        }
-    }
+    
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
+using VirtualRamenDiscordBot.Channels.Base.Messages.Base;
 
-namespace VirtualRamenDiscordBot.Channels.Generators.Messages
+namespace VirtualRamenDiscordBot.Channels.Base.Messages
 {
     /// <summary>
     /// An image that is loaded from file.

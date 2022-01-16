@@ -12,6 +12,10 @@ namespace VirtualRamenDiscordBot
     {
         private SocketGuild _guild;
 
+        public DiscordAPI(DiscordSocketConfig config) : base(config)
+        {
+        }
+
         public SocketGuild GetGuild()
         {
             return _guild ??= Guilds.First();

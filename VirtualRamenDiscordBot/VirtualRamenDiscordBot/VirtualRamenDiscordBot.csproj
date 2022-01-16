@@ -209,6 +209,9 @@
         <Compile Include="Channels\Base\Messages\EmbedMessage.cs" />
         <Compile Include="Channels\Base\Messages\ImageMessage.cs" />
         <Compile Include="Channels\Base\Messages\TextMessage.cs" />
+        <Compile Include="Channels\Roles\SelectableRoles\LanguageRoles\EnglishRole.cs" />
+        <Compile Include="Channels\Roles\SelectableRoles\LanguageRoles\FrenchRole.cs" />
+        <Compile Include="Channels\Roles\SelectableRoles\LanguageRoles\Base\LanguageRole.cs" />
         <Compile Include="Channels\Rules\RulesChannel.cs" />
         <Compile Include="Channels\Roles\RolesChannel.cs" />
         <Compile Include="Channels\Roles\SelectableRoles\AnnoncesRole.cs" />
@@ -224,19 +227,19 @@
         <Compile Include="DiscordAPI.cs" />
         <Compile Include="EmotesConstants.cs" />
         <Compile Include="ExampleEnum.cs" />
-        <Compile Include="Modules\ChannelGeneratorModule.cs" />
+        <Compile Include="Modules\RoleListennerModule.cs" />
+        <Compile Include="Modules\RoleListenner.cs" />
         <Compile Include="Modules\UtilityModule.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="RequireOwnerAttribute.cs" />
+        <Compile Include="Services\RoleUpdaterService.cs" />
         <Compile Include="Utils\GradientGenerator.cs" />
         <Compile Include="Utils\IMessageChannelExtensions.cs" />
+        <Compile Include="Utils\ReflectionUtil.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Services" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="Channels\Admission\Welcome.png">

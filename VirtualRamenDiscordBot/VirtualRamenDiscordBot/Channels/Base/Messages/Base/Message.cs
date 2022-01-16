@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Discord;
 
-namespace VirtualRamenDiscordBot.Channels.Generators.Messages.Base
+namespace VirtualRamenDiscordBot.Channels.Base.Messages.Base
 {
     /// <summary>
     /// An embed, text or image which can have emotes added to it.
@@ -33,6 +33,11 @@ namespace VirtualRamenDiscordBot.Channels.Generators.Messages.Base
         public void AddEmoji(List<IEmote> emotes)
         {
             Emotes.AddRange(emotes);
+        }
+
+        public void AddEmoji(IEmote selectableRoleEmote)
+        {
+            Emotes.Add(selectableRoleEmote);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace VirtualRamenDiscordBot.Channels.Generators.Base
+﻿namespace VirtualRamenDiscordBot.Channels.Base
 {
     /// <summary>
     /// Represents a Discord Text channel.

@@ -11,5 +11,7 @@ namespace VirtualRamenDiscordBot.Channels.Roles.SelectableRoles.Base
 
         public abstract IEmote Emote { get; }
         public abstract EmbedBuilder EmbedBuilder { get; }
+
+        public abstract string Role { get; }
     }
 }

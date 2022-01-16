@@ -1,12 +1,8 @@
-﻿using System.Collections.Generic;
-using Discord;
-using VirtualRamenDiscordBot.Channels.Generators.Base;
-using VirtualRamenDiscordBot.Channels.Generators.Messages;
-using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
-using VirtualRamenDiscordBot.Utils;
+﻿using Discord;
+using VirtualRamenDiscordBot.Channels.Base;
+using VirtualRamenDiscordBot.Channels.Base.Messages.Base;
 
-
-namespace VirtualRamenDiscordBot.Channels.Welcome
+namespace VirtualRamenDiscordBot.Channels.Admission
 {
     /// <summary>
     /// Generates the Welcome channel, which invites user to read the rules and participate in the server.

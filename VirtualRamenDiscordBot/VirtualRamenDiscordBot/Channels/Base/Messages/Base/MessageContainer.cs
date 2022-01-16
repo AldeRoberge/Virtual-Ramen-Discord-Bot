@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Discord;
 
-namespace VirtualRamenDiscordBot.Channels.Generators.Messages.Base
+namespace VirtualRamenDiscordBot.Channels.Base.Messages.Base
 {
     /// <summary>
     /// Contains a series of messages that can be sent to a channel during regeneration.

@@ -1,6 +1,6 @@
-﻿using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
+﻿using VirtualRamenDiscordBot.Channels.Base.Messages.Base;
 
-namespace VirtualRamenDiscordBot.Channels.Generators.Base
+namespace VirtualRamenDiscordBot.Channels.Base
 {
     /// <summary>
     /// The base class for a ChannelGenerator, which must identify which Channel it is going to update,

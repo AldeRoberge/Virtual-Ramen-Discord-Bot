@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Discord;
-using VirtualRamenDiscordBot.Channels.Generators.Base;
-using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
+using VirtualRamenDiscordBot.Channels.Base;
+using VirtualRamenDiscordBot.Channels.Base.Messages.Base;
+using VirtualRamenDiscordBot.Channels.Roles.SelectableRoles;
 using VirtualRamenDiscordBot.Channels.Roles.SelectableRoles.Base;
+using VirtualRamenDiscordBot.Channels.Roles.SelectableRoles.LanguageRoles.Base;
 using VirtualRamenDiscordBot.Modules;
+using VirtualRamenDiscordBot.Utils;
 
 namespace VirtualRamenDiscordBot.Channels.Roles
 {
@@ -21,9 +24,9 @@ namespace VirtualRamenDiscordBot.Channels.Roles
             ChannelsEnum = ChannelsEnum.Roles
         };
 
-        public List<SelectableRole> SelectableRoles;
+        public static List<SelectableRole> SelectableRoles;
 
-        public RolesChannel()
+        static RolesChannel()
         {
             SelectableRoles = RelfectionUtil<SelectableRole>.Load();
         }
@@ -35,14 +38,33 @@ namespace VirtualRamenDiscordBot.Channels.Roles
             List<IEmote> emotes = new List<IEmote>();
             Console.WriteLine("Loading " + SelectableRoles.Count + " selectable roles...");
 
+            List<Color> colors = GradientGenerator.GetRainbowGradient(SelectableRoles.Count);
+
+            int i = 0;
+
+            List<LanguageRole> languageRoles = new List<LanguageRole>();
+
             foreach (SelectableRole selectableRole in SelectableRoles)
             {
-                Console.WriteLine("Adding Role : " + selectableRole.Name);
-                messageContainer.AddEmbed(selectableRole.EmbedBuilder);
-                emotes.Add(selectableRole.Emote);
+                if (selectableRole is LanguageRole languageRole)
+                {
+                    languageRoles.Add(languageRole);
+                }
+                else
+                {
+                    Console.WriteLine("Adding Role : " + selectableRole.Name);
+                    messageContainer.AddEmbed(selectableRole.EmbedBuilder.WithColor(colors[i]))
+                        .AddEmoji(selectableRole.Emote);
+                }
+
+                i++;
             }
 
-            messageContainer.AddText("Some text").AddEmoji(emotes);
+            foreach (LanguageRole languageRole in languageRoles)
+            {
+                messageContainer.AddEmbed(languageRole.EmbedBuilder)
+                    .AddEmoji(languageRole.Emote);
+            }
         }
     }
 }

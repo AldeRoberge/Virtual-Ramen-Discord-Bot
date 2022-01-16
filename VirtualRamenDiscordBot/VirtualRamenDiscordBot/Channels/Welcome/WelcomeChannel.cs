@@ -12,13 +12,16 @@ namespace _04_interactions_framework.Channels
             Topic = "Allows for some welcome messages to be sent to new members."
         };
 
-        public override List<Embed> PopulateMessages(MessageContainer messageContainer)
+        public override void PopulateMessages(MessageContainer messageContainer)
         {
-            messageContainer.AddMessage(new Message("Pee pee", new EmbedBuilder
+            messageContainer.AddEmbed(new EmbedBuilder
             {
                 Title = "Hey",
                 Description = "Test Description"
-            }));
+            });
+
+            messageContainer.AddText("Some text");
+            messageContainer.AddImage("Channels/Generators/Welcome/Welcome.png");
         }
     }
 }

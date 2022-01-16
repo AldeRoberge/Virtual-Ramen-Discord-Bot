@@ -202,9 +202,13 @@
         <Compile Include="Channels\ChannelConstants.cs" />
         <Compile Include="Channels\Generators\Base\Channel.cs" />
         <Compile Include="Channels\Generators\Base\ChannelGenerator.cs" />
-        <Compile Include="Channels\Generators\Message.cs" />
-        <Compile Include="Channels\Generators\MessageContainer.cs" />
-        <Compile Include="Channels\Generators\WelcomeChannel.cs" />
+        <Compile Include="Channels\Generators\Messages\Base\Message.cs" />
+        <Compile Include="Channels\Generators\Messages\Base\MessageContainer.cs" />
+        <Compile Include="Channels\Generators\Messages\EmbedMessage.cs" />
+        <Compile Include="Channels\Generators\Messages\ImageMessage.cs" />
+        <Compile Include="Channels\Generators\Messages\TextMessage.cs" />
+        <Compile Include="Channels\Roles\RolesChannel.cs" />
+        <Compile Include="Channels\Welcome\WelcomeChannel.cs" />
         <Compile Include="CommandHandler.cs" />
         <Compile Include="DiscordAPI.cs" />
         <Compile Include="ExampleEnum.cs" />
@@ -220,6 +224,10 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="Services" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Channels\Roles\Roles.png" />
+      <Content Include="Channels\Welcome\Welcome.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />

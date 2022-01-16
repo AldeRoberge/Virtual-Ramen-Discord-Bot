@@ -11,6 +11,6 @@ namespace _04_interactions_framework.Channels
     {
         public abstract Channel Channel { get; }
         
-        public abstract List<Embed> PopulateMessages(MessageContainer messageContainer);
+        public abstract void PopulateMessages(MessageContainer messageContainer);
     }
 }

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 using _04_interactions_framework.Channels;
+using _04_interactions_framework.Channels.Messages;
 using _04_interactions_framework.Utils;
 using Discord;
 using Discord.Interactions;
@@ -60,10 +63,26 @@ namespace _04_interactions_framework.Modules
                 MessageContainer m = new MessageContainer();
                 channelGenerator.PopulateMessages(m);
 
+                await ReplyAsync("Found " + m.Messages.Count + " message(s) to send.");
+
+
+
                 foreach (var message in m.Messages)
                 {
                     await ReplyAsync("Sending message '" + message.ToString() + "'.");
-                    await c.SendMessageAsync(message.Text, false, message.Embed);
+
+                    switch (message)
+                    {
+                        case ImageMessage imageMessage:
+                            await c.SendFileAsync(imageMessage.ImagePath);
+                            break;
+                        case TextMessage textMessage:
+                            await c.SendMessageAsync(textMessage.Text);
+                            break;
+                        case EmbedMessage embedMessage:
+                            await c.SendMessageAsync(embedMessage.Text, false, embedMessage.EmbedBuilder.Build());
+                            break;
+                    }
                 }
             }
         }

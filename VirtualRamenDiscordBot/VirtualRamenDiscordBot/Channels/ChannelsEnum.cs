@@ -9,7 +9,7 @@
         Roles,
         Welcome,
         Rules,
-        Info,
+        Admission,
         All
     }
 }

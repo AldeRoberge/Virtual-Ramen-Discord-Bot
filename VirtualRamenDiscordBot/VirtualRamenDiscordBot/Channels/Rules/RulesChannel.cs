@@ -25,7 +25,7 @@ namespace VirtualRamenDiscordBot.Channels.Welcome
         public override Channel Channel => new()
         {
             Id = ChannelConstants.Rules,
-            Name = "「📃」règles",
+            Name = "「📃」règlements",
             Topic = "La liste des règles du serveur",
             ChannelsEnum = ChannelsEnum.Rules
         };
@@ -73,10 +73,6 @@ namespace VirtualRamenDiscordBot.Channels.Welcome
                 });
             }
 
-            messageContainer
-                .AddText(
-                    " Dès lors que vous interagissez avec notre contenu vous déclarez avoir **lu, compris et accepté** ce règlement. **Vous ne pouvez pas prétendre de ne pas le connaître.**")
-                .AddEmoji("\U0001F603");
         }
     }
 }

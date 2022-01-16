@@ -16,7 +16,7 @@ namespace VirtualRamenDiscordBot.Channels.Roles
         public override Channel Channel => new()
         {
             Id = ChannelConstants.Roles,
-            Name = "「🔎」roles",
+            Name = "「🔎」rôles",
             Topic = "Permet de sélectionner ses propres rôles.",
             ChannelsEnum = ChannelsEnum.Roles
         };

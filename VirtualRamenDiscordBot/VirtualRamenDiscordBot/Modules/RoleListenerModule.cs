@@ -13,21 +13,19 @@ using VirtualRamenDiscordBot.Utils;
 namespace VirtualRamenDiscordBot.Modules
 {
     /// <summary>
-    /// Handles the regeneration method.
-    /// Updates the title, description and image of the channel.
-    /// Also populates the channel with messages and reactions on the messages.
+    /// Handles reactions on messages that give roles.
     /// </summary>
-    public class RoleListennerModule : InteractionModuleBase<SocketInteractionContext>
+    public class RoleListenerModule : InteractionModuleBase<SocketInteractionContext>
     {
         private DiscordAPI _client;
 
-        public List<RoleService> RoleUpdaterServices;
+        public List<ReactionService> RoleUpdaterServices;
 
-        public RoleListennerModule(DiscordAPI socketClient)
+        public RoleListenerModule(DiscordAPI socketClient)
         {
             _client = socketClient;
 
-            RoleUpdaterServices = ReflectionUtils<RoleService>.Load();
+            RoleUpdaterServices = ReflectionUtils<ReactionService>.Load();
 
             _client.ReactionAdded += OnReactionAdded;
             _client.ReactionRemoved += OnReactionRemoved;
@@ -41,11 +39,11 @@ namespace VirtualRamenDiscordBot.Modules
             var user = _client.GetGuild();
             var r = user.GetUser(reaction.UserId);
 
-            foreach (RoleService roleUpdaterService in RoleUpdaterServices)
+            foreach (ReactionService roleUpdaterService in RoleUpdaterServices)
             {
                 if (roleUpdaterService.ChannelId == channel.Id)
                 {
-                    await roleUpdaterService.RemoveRole(channel, r, reaction);
+                    await roleUpdaterService.ReactionRemoved(channel, r, reaction);
                 }
             }
         }
@@ -58,11 +56,11 @@ namespace VirtualRamenDiscordBot.Modules
             var user = _client.GetGuild();
             var r = user.GetUser(reaction.UserId);
 
-            foreach (RoleService roleUpdaterService in RoleUpdaterServices)
+            foreach (ReactionService roleUpdaterService in RoleUpdaterServices)
             {
                 if (roleUpdaterService.ChannelId == channel.Id)
                 {
-                    await roleUpdaterService.AddRole(channel, r, reaction);
+                    await roleUpdaterService.ReactionAdded(channel, r, reaction);
                 }
             }
         }

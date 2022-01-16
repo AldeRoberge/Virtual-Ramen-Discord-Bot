@@ -13,7 +13,7 @@ namespace VirtualRamenDiscordBot.Services
     /// <summary>
     /// Gives or removes a role based on the reaction on a message from the user.
     /// </summary>
-    public class AdmissionService : RoleService
+    public class AdmissionService : ReactionService
     {
         
         public override ulong ChannelId => ChannelConstants.Admission;
@@ -22,7 +22,7 @@ namespace VirtualRamenDiscordBot.Services
 
         public IRole AdmittedRole;
 
-        public override async Task AddRole(Cacheable<IMessageChannel, ulong> channel, SocketGuildUser user,
+        public override async Task ReactionAdded(Cacheable<IMessageChannel, ulong> channel, SocketGuildUser user,
             SocketReaction reaction)
         {
             var c = await channel.GetOrDownloadAsync();
@@ -33,7 +33,7 @@ namespace VirtualRamenDiscordBot.Services
             await user.AddRoleAsync(AdmittedRole);
         }
 
-        public override Task RemoveRole(Cacheable<IMessageChannel, ulong> channel, SocketGuildUser user, SocketReaction reaction)
+        public override Task ReactionRemoved(Cacheable<IMessageChannel, ulong> channel, SocketGuildUser user, SocketReaction reaction)
         {
             return Task.CompletedTask;
         }

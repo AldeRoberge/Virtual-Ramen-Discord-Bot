@@ -210,7 +210,13 @@
         <Compile Include="Channels\Base\Messages\TextMessage.cs" />
         <Compile Include="Channels\Roles\RolesChannel.cs" />
         <Compile Include="Channels\Roles\SelectableRoles\AnnoncesRole.cs" />
+        <Compile Include="Channels\Roles\SelectableRoles\AteliersRole.cs" />
         <Compile Include="Channels\Roles\SelectableRoles\Base\SelectableRole.cs" />
+        <Compile Include="Channels\Roles\SelectableRoles\EvenementsRole.cs" />
+        <Compile Include="Channels\Roles\SelectableRoles\FireCampsRole.cs" />
+        <Compile Include="Channels\Roles\SelectableRoles\GiveAwayRole.cs" />
+        <Compile Include="Channels\Roles\SelectableRoles\PartenariatRole.cs" />
+        <Compile Include="Channels\Roles\SelectableRoles\SondagesRole.cs" />
         <Compile Include="Channels\Welcome\WelcomeChannel.cs" />
         <Compile Include="CommandHandler.cs" />
         <Compile Include="DiscordAPI.cs" />

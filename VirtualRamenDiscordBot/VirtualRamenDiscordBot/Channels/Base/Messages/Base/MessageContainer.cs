@@ -8,7 +8,7 @@ namespace VirtualRamenDiscordBot.Channels.Generators.Messages.Base
     /// </summary>
     public class MessageContainer
     {
-        public List<Message> Messages = new List<Message>();
+        public List<Message> Messages = new();
 
         public void AddMessage(Message m)
         {

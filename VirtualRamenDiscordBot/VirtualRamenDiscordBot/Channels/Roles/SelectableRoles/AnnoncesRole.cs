@@ -7,9 +7,9 @@ namespace VirtualRamenDiscordBot.Channels.Roles.SelectableRoles
     {
         public override string Name => "Annonces";
         public override IEmote Emote => new Emoji("📢");
-        public override EmbedBuilder EmbedBuilder => new EmbedBuilder
+        public override EmbedBuilder EmbedBuilder => new()
         {
-            Title = "Annonces",
+            Title = Name,
             Description =
                 "**Que ce soit mise à jour, recrutements, ou encore pleins d'autres annonces concernant l'actualité du serveur, tu ne ratera rien !**",
             Color = new Color(0, 253, 228),

@@ -8,7 +8,7 @@ namespace VirtualRamenDiscordBot.Channels.Generators.Messages.Base
     /// </summary>
     public class Message
     {
-        public List<IEmote> Emotes = new List<IEmote>();
+        public List<IEmote> Emotes = new();
 
         public void AddEmote(params Emote[] emote)
         {

@@ -74,4 +74,5 @@ C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot
 C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot\VirtualRamenDiscordBot\obj\Debug\VirtualRamenDiscordBot.csproj.CopyComplete
 C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot\VirtualRamenDiscordBot\obj\Debug\VirtualRamenDiscordBot.exe
 C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot\VirtualRamenDiscordBot\obj\Debug\VirtualRamenDiscordBot.pdb
-C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot\VirtualRamenDiscordBot\bin\Debug\Channels\Generators\Welcome\Welcome.png
+C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot\VirtualRamenDiscordBot\bin\Debug\Channels\Welcome\Welcome.png
+C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot\VirtualRamenDiscordBot\bin\Debug\Channels\Roles\Notifications.jpg

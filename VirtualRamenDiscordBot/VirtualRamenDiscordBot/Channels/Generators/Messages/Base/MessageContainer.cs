@@ -13,19 +13,28 @@ namespace _04_interactions_framework.Channels
             Messages.Add(m);
         }
 
-        public void AddEmbed(EmbedBuilder embedBuilder)
+        public Message AddEmbed(EmbedBuilder embedBuilder)
         {
-            Messages.Add(new EmbedMessage(embedBuilder));
+            var msg = new EmbedMessage(embedBuilder);
+            Messages.Add(msg);
+            
+            return msg;
         }
 
-        public void AddText(string text)
+        public Message AddText(string text)
         {
-            Messages.Add(new TextMessage(text));
+            var msg = new TextMessage(text);
+            Messages.Add(msg);
+            
+            return msg;
         }
 
-        public void AddImage(string imageUrl)
+        public Message AddImage(string imageUrl)
         {
-            Messages.Add(new ImageMessage(imageUrl));
+            var msg = new ImageMessage(imageUrl);
+            Messages.Add(msg);
+            
+            return msg;
         }
     }
 }

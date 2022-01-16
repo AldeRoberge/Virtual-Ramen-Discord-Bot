@@ -5,6 +5,8 @@ namespace _04_interactions_framework.Channels
 {
     public class WelcomeChannel : ChannelGenerator
     {
+        public override ChannelsEnum ChannelsEnum => ChannelsEnum.Welcome;
+
         public override Channel Channel => new()
         {
             Id = ChannelConstants.Welcome,
@@ -21,7 +23,7 @@ namespace _04_interactions_framework.Channels
             });
 
             messageContainer.AddText("Some text");
-            messageContainer.AddImage("Channels/Generators/Welcome/Welcome.png");
+            messageContainer.AddImage("Channels/Welcome/Welcome.png");
         }
     }
 }

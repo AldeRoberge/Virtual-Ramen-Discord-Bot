@@ -14,11 +14,7 @@ namespace _04_interactions_framework.Modules
 {
     public class ChannelModule : InteractionModuleBase<SocketInteractionContext>
     {
-        public List<ChannelGenerator> Channels = new List<ChannelGenerator>()
-        {
-            new WelcomeChannel()
-        };
-
+        public readonly List<ChannelGenerator> Channels;
 
         // Dependencies can be accessed through Property injection, public properties with public setters will be set by the service provider
         public InteractionService Commands { get; set; }
@@ -32,16 +28,25 @@ namespace _04_interactions_framework.Modules
         {
             _handler = handler;
             _client = socketClient;
-        }
 
+            // Load the Channel Generators
+            Channels = new List<ChannelGenerator>();
+            Channels.AddRange(RelfectionUtil<ChannelGenerator>.Load());
+        }
 
         // Slash Commands are declared using the [SlashCommand], you need to provide a name and a description, both following the Discord guidelines
         [SlashCommand("regen", "Regens the channels")]
         [RequireOwner]
-        public async Task Regen()
+        public async Task Regen(ChannelsEnum channelsToUpdate)
         {
             foreach (ChannelGenerator channelGenerator in Channels)
             {
+                if (channelsToUpdate != ChannelsEnum.All && channelsToUpdate != channelGenerator.ChannelsEnum)
+                {
+                    await ReplyAsync("Skipping channel " + channelGenerator.Channel.Name);
+                    return;
+                }
+
                 // DiscordAPI
                 IMessageChannel c = _client.GetChannelById(channelGenerator.Channel.Id);
 
@@ -59,32 +64,71 @@ namespace _04_interactions_framework.Modules
                     prop.Topic = channelGenerator.Channel.Topic;
                 });
 
-
                 MessageContainer m = new MessageContainer();
                 channelGenerator.PopulateMessages(m);
 
                 await ReplyAsync("Found " + m.Messages.Count + " message(s) to send.");
 
-
-
                 foreach (var message in m.Messages)
                 {
-                    await ReplyAsync("Sending message '" + message.ToString() + "'.");
-
-                    switch (message)
+                    try
                     {
-                        case ImageMessage imageMessage:
-                            await c.SendFileAsync(imageMessage.ImagePath);
-                            break;
-                        case TextMessage textMessage:
-                            await c.SendMessageAsync(textMessage.Text);
-                            break;
-                        case EmbedMessage embedMessage:
-                            await c.SendMessageAsync(embedMessage.Text, false, embedMessage.EmbedBuilder.Build());
-                            break;
+                        IUserMessage resultMsg = null;
+
+                        switch (message)
+                        {
+                            case ImageMessage imageMessage:
+                                resultMsg = await c.SendFileAsync(imageMessage.ImagePath);
+                                break;
+                            case TextMessage textMessage:
+                                resultMsg = await c.SendMessageAsync(textMessage.Text);
+                                break;
+                            case EmbedMessage embedMessage:
+                                resultMsg = await c.SendMessageAsync(embedMessage.Text, false,
+                                    embedMessage.EmbedBuilder.Build());
+                                break;
+                            default:
+                                Console.WriteLine("Error, unknown type of message : " + typeof(Message) + ".");
+                                break;
+                        }
+
+                        if (resultMsg != null)
+                        {
+                            // Adds the reactions for the message
+                            foreach (var messageEmote in message.Emotes)
+                            {
+                                await resultMsg.AddReactionAsync(messageEmote);
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        await ReplyAsync("Error while sending message : '" + message.ToString() + "'.");
                     }
                 }
             }
+        }
+    }
+
+    public static class RelfectionUtil<T>
+    {
+        /// <summary>
+        /// Loads all the classes that inherit from the given type using reflection.
+        /// </summary>
+        public static List<T> Load()
+        {
+            List<T> instances = new List<T>();
+
+            var types = Assembly.GetExecutingAssembly().GetTypes();
+            foreach (var type in types)
+            {
+                if (type.IsSubclassOf(typeof(T)))
+                {
+                    instances.Add((T) Activator.CreateInstance(type));
+                }
+            }
+
+            return instances;
         }
     }
 }

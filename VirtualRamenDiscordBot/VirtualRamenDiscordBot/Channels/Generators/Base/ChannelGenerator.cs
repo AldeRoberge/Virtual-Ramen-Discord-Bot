@@ -11,6 +11,8 @@ namespace _04_interactions_framework.Channels
     {
         public abstract Channel Channel { get; }
         
+        public abstract ChannelsEnum ChannelsEnum { get; }
+        
         public abstract void PopulateMessages(MessageContainer messageContainer);
     }
 }

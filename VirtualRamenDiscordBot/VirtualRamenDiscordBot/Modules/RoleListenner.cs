@@ -7,6 +7,7 @@ using Discord.Interactions;
 using Discord.WebSocket;
 using VirtualRamenDiscordBot.Channels;
 using VirtualRamenDiscordBot.Services;
+using VirtualRamenDiscordBot.Services.RoleServices.Base;
 using VirtualRamenDiscordBot.Utils;
 
 namespace VirtualRamenDiscordBot.Modules
@@ -20,16 +21,16 @@ namespace VirtualRamenDiscordBot.Modules
     {
         private DiscordAPI _client;
 
-        RoleUpdaterService _roleUpdaterService;
+        public List<RoleService> RoleUpdaterServices;
 
         public RoleListennerModule(DiscordAPI socketClient)
         {
             _client = socketClient;
 
+            RoleUpdaterServices = ReflectionUtils<RoleService>.Load();
+
             _client.ReactionAdded += OnReactionAdded;
             _client.ReactionRemoved += OnReactionRemoved;
-
-            _roleUpdaterService = new RoleUpdaterService();
         }
 
         private async Task OnReactionRemoved(Cacheable<IUserMessage, ulong> message,
@@ -40,7 +41,13 @@ namespace VirtualRamenDiscordBot.Modules
             var user = _client.GetGuild();
             var r = user.GetUser(reaction.UserId);
 
-            await _roleUpdaterService.RemoveRole(channel, r, reaction);
+            foreach (RoleService roleUpdaterService in RoleUpdaterServices)
+            {
+                if (roleUpdaterService.ChannelId == channel.Id)
+                {
+                    await roleUpdaterService.RemoveRole(channel, r, reaction);
+                }
+            }
         }
 
         private async Task OnReactionAdded(Cacheable<IUserMessage, ulong> message,
@@ -51,8 +58,13 @@ namespace VirtualRamenDiscordBot.Modules
             var user = _client.GetGuild();
             var r = user.GetUser(reaction.UserId);
 
-
-            await _roleUpdaterService.AddRole(channel, r, reaction);
+            foreach (RoleService roleUpdaterService in RoleUpdaterServices)
+            {
+                if (roleUpdaterService.ChannelId == channel.Id)
+                {
+                    await roleUpdaterService.AddRole(channel, r, reaction);
+                }
+            }
         }
     }
 }

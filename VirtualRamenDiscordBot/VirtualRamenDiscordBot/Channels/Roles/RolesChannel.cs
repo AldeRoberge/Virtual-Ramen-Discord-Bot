@@ -28,7 +28,7 @@ namespace VirtualRamenDiscordBot.Channels.Roles
 
         static RolesChannel()
         {
-            SelectableRoles = RelfectionUtil<SelectableRole>.Load();
+            SelectableRoles = ReflectionUtils<SelectableRole>.Load();
         }
 
         public override void PopulateMessages(MessageContainer messageContainer)

@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace VirtualRamenDiscordBot.Utils
 {
-    public static class RelfectionUtil<T>
+    public static class ReflectionUtils<T>
     {
         /// <summary>
         /// Loads all the non-abstract classes that inherit from the given type using reflection.

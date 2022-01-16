@@ -224,19 +224,21 @@
         <Compile Include="Channels\Roles\SelectableRoles\SondagesRole.cs" />
         <Compile Include="Channels\Welcome\WelcomeChannel.cs" />
         <Compile Include="CommandHandler.cs" />
+        <Compile Include="Constants\EmotesConstants.cs" />
+        <Compile Include="Constants\ExampleEnum.cs" />
         <Compile Include="DiscordAPI.cs" />
-        <Compile Include="EmotesConstants.cs" />
-        <Compile Include="ExampleEnum.cs" />
         <Compile Include="Modules\RoleListennerModule.cs" />
         <Compile Include="Modules\RoleListenner.cs" />
         <Compile Include="Modules\UtilityModule.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="RequireOwnerAttribute.cs" />
+        <Compile Include="Services\AdmissionService.cs" />
+        <Compile Include="Services\RoleServices\Base\RoleService.cs" />
         <Compile Include="Services\RoleUpdaterService.cs" />
         <Compile Include="Utils\GradientGenerator.cs" />
         <Compile Include="Utils\IMessageChannelExtensions.cs" />
         <Compile Include="Utils\ReflectionUtil.cs" />
+        <Compile Include="Utils\RequireOwnerAttribute.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

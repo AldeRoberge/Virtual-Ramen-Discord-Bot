@@ -3,7 +3,7 @@ using Discord;
 
 namespace VirtualRamenDiscordBot.Utils
 {
-    public static class IMessageChannelExtensions
+    public static class MessageChannelExtensions
     {
         // Delete all messages
         public static async Task DeleteAllMessages(this IMessageChannel channel)

@@ -3,6 +3,9 @@ using Discord;
 
 namespace VirtualRamenDiscordBot.Utils
 {
+    /// <summary>
+    /// Utility class for generating gradient of colors.
+    /// </summary>
     public static class GradientGenerator
     {
         // Creates a list of Color from two colors and a given range

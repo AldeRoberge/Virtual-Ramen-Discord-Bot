@@ -37,7 +37,7 @@ namespace VirtualRamenDiscordBot.Modules
 
             // Load the Channel Generators
             Channels = new List<ChannelGenerator>();
-            Channels.AddRange(RelfectionUtil<ChannelGenerator>.Load());
+            Channels.AddRange(ReflectionUtils<ChannelGenerator>.Load());
         }
 
         // Slash Commands are declared using the [SlashCommand], you need to provide a name and a description, both following the Discord guidelines

@@ -201,13 +201,13 @@
     <ItemGroup>
         <Compile Include="Channels\ChannelConstants.cs" />
         <Compile Include="Channels\ChannelsEnum.cs" />
-        <Compile Include="Channels\Generators\Base\Channel.cs" />
-        <Compile Include="Channels\Generators\Base\ChannelGenerator.cs" />
-        <Compile Include="Channels\Generators\Messages\Base\Message.cs" />
-        <Compile Include="Channels\Generators\Messages\Base\MessageContainer.cs" />
-        <Compile Include="Channels\Generators\Messages\EmbedMessage.cs" />
-        <Compile Include="Channels\Generators\Messages\ImageMessage.cs" />
-        <Compile Include="Channels\Generators\Messages\TextMessage.cs" />
+        <Compile Include="Channels\Base\Channel.cs" />
+        <Compile Include="Channels\Base\ChannelGenerator.cs" />
+        <Compile Include="Channels\Base\Messages\Base\Message.cs" />
+        <Compile Include="Channels\Base\Messages\Base\MessageContainer.cs" />
+        <Compile Include="Channels\Base\Messages\EmbedMessage.cs" />
+        <Compile Include="Channels\Base\Messages\ImageMessage.cs" />
+        <Compile Include="Channels\Base\Messages\TextMessage.cs" />
         <Compile Include="Channels\Roles\RolesChannel.cs" />
         <Compile Include="Channels\Roles\SelectableRoles\AnnoncesRole.cs" />
         <Compile Include="Channels\Roles\SelectableRoles\Base\SelectableRole.cs" />
@@ -216,7 +216,7 @@
         <Compile Include="DiscordAPI.cs" />
         <Compile Include="EmotesConstants.cs" />
         <Compile Include="ExampleEnum.cs" />
-        <Compile Include="Modules\ChannelModule.cs" />
+        <Compile Include="Modules\ChannelGeneratorModule.cs" />
         <Compile Include="Modules\UtilityModule.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

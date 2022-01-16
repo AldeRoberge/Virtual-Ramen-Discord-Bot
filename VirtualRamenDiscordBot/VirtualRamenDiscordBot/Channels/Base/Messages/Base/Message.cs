@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using Discord;
 
-namespace _04_interactions_framework.Channels
+namespace VirtualRamenDiscordBot.Channels.Generators.Messages.Base
 {
+    /// <summary>
+    /// An embed, text or image which can have emotes added to it.
+    /// </summary>
     public class Message
     {
         public List<IEmote> Emotes = new List<IEmote>();

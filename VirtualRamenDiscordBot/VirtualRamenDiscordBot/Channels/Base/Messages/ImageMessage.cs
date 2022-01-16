@@ -1,9 +1,13 @@
 ﻿using System;
 using System.IO;
-using System.Reflection;
+using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
 
-namespace _04_interactions_framework.Channels.Messages
+namespace VirtualRamenDiscordBot.Channels.Generators.Messages
 {
+    /// <summary>
+    /// An image that is loaded from file.
+    /// Uses the path relative to the assembly.
+    /// </summary>
     public class ImageMessage : Message
     {
         public string ImagePath;

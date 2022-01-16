@@ -1,4 +1,4 @@
-﻿namespace _04_interactions_framework
+﻿namespace VirtualRamenDiscordBot
 {
     public class EmotesConstants
     {

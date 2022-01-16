@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
-using Discord;
+﻿using Discord;
+using VirtualRamenDiscordBot.Channels.Generators.Base;
+using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
 
-namespace _04_interactions_framework.Channels
+namespace VirtualRamenDiscordBot.Channels.Welcome
 {
+    /// <summary>
+    /// Generates the Welcome channel, which invites user to read the rules and participate in the server.
+    /// </summary>
     public class WelcomeChannel : ChannelGenerator
     {
         public override ChannelsEnum ChannelsEnum => ChannelsEnum.Welcome;

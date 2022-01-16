@@ -1,6 +1,7 @@
 ﻿using Discord;
+using VirtualRamenDiscordBot.Channels.Roles.SelectableRoles.Base;
 
-namespace _04_interactions_framework.Channels
+namespace VirtualRamenDiscordBot.Channels.Roles.SelectableRoles
 {
     public class AnnoncesRole : SelectableRole
     {

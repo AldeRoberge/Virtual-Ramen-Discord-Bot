@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Discord;
 
-namespace _04_interactions_framework.Utils
+namespace VirtualRamenDiscordBot.Utils
 {
     public static class IMessageChannelExtensions
     {

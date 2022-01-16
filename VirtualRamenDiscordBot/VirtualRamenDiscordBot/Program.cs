@@ -1,15 +1,17 @@
-using Discord;
-using Discord.Interactions;
-using Discord.WebSocket;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Discord;
+using Discord.Interactions;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace _04_interactions_framework
+namespace VirtualRamenDiscordBot
 {
+    /// <summary>
+    /// Launches the bot.
+    /// Based on Discord.NET's 'interaction' example.
+    /// </summary>
     public class Program
     {
         public static void Main(string[] args)
@@ -27,7 +29,7 @@ namespace _04_interactions_framework
         static async Task RunAsync(IConfiguration configuration)
         {
             Console.WriteLine("Loggign with the token : " + configuration["token"]);
-            
+
             // Dependency injection is a key part of the Interactions framework but it needs to be disposed at the end of the app's lifetime.
             using var services = ConfigureServices(configuration);
 
@@ -53,9 +55,9 @@ namespace _04_interactions_framework
             await services.GetRequiredService<CommandHandler>().InitializeAsync();
 
             // Bot token can be provided from the Configuration object we set up earlier
-            
+
             Console.WriteLine("Loggign with the token : " + configuration["token"]);
-            
+
             await client.LoginAsync(TokenType.Bot, configuration["token"]);
             await client.StartAsync();
 

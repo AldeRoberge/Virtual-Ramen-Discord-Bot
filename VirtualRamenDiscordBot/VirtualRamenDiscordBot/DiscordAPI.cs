@@ -1,10 +1,13 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Discord;
 using Discord.WebSocket;
 
-namespace _04_interactions_framework
+namespace VirtualRamenDiscordBot
 {
+    /// <summary>
+    /// Gives a higher level of control over the bot.
+    /// Allows for methods that hide some logic for the users of the bot.
+    /// </summary>
     public class DiscordAPI : DiscordSocketClient
     {
         private SocketGuild _guild;

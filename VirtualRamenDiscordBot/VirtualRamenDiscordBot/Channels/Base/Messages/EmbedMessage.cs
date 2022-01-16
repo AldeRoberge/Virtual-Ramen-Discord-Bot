@@ -1,7 +1,11 @@
 ﻿using Discord;
+using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
 
-namespace _04_interactions_framework.Channels.Messages
+namespace VirtualRamenDiscordBot.Channels.Generators.Messages
 {
+    /// <summary>
+    /// An Embed and optional text.
+    /// </summary>
     public class EmbedMessage : Message
     {
         public string Text;

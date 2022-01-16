@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
-using _04_interactions_framework.Channels;
-using _04_interactions_framework.Channels.Messages;
-using _04_interactions_framework.Utils;
 using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+using VirtualRamenDiscordBot.Channels;
+using VirtualRamenDiscordBot.Channels.Generators.Base;
+using VirtualRamenDiscordBot.Channels.Generators.Messages;
+using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
+using VirtualRamenDiscordBot.Utils;
 
-namespace _04_interactions_framework.Modules
+namespace VirtualRamenDiscordBot.Modules
 {
-    public class ChannelModule : InteractionModuleBase<SocketInteractionContext>
+    /// <summary>
+    /// Handles the regeneration method.
+    /// Updates the title, description and image of the channel.
+    /// Also populates the channel with messages and reactions on the messages.
+    /// </summary>
+    public class ChannelGeneratorModule : InteractionModuleBase<SocketInteractionContext>
     {
         public readonly List<ChannelGenerator> Channels;
 
@@ -24,7 +30,7 @@ namespace _04_interactions_framework.Modules
         private DiscordAPI _client;
 
         // Constructor injection is also a valid way to access the dependecies
-        public ChannelModule(CommandHandler handler, DiscordAPI socketClient)
+        public ChannelGeneratorModule(CommandHandler handler, DiscordAPI socketClient)
         {
             _handler = handler;
             _client = socketClient;

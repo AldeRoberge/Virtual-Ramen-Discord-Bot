@@ -1,13 +1,8 @@
+using System.Threading.Tasks;
 using Discord;
 using Discord.Interactions;
-using Discord.WebSocket;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace _04_interactions_framework.Modules
+namespace VirtualRamenDiscordBot.Modules
 {
     // Interation modules must be public and inherit from an IInterationModuleBase
     public class UtilityModule : InteractionModuleBase<SocketInteractionContext>

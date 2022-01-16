@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
-using _04_interactions_framework.Channels.Messages;
 using Discord;
 
-namespace _04_interactions_framework.Channels
+namespace VirtualRamenDiscordBot.Channels.Generators.Messages.Base
 {
+    /// <summary>
+    /// Contains a series of messages that can be sent to a channel during regeneration.
+    /// </summary>
     public class MessageContainer
     {
         public List<Message> Messages = new List<Message>();
@@ -17,7 +19,7 @@ namespace _04_interactions_framework.Channels
         {
             var msg = new EmbedMessage(embedBuilder);
             Messages.Add(msg);
-            
+
             return msg;
         }
 
@@ -25,7 +27,7 @@ namespace _04_interactions_framework.Channels
         {
             var msg = new TextMessage(text);
             Messages.Add(msg);
-            
+
             return msg;
         }
 
@@ -33,7 +35,7 @@ namespace _04_interactions_framework.Channels
         {
             var msg = new ImageMessage(imageUrl);
             Messages.Add(msg);
-            
+
             return msg;
         }
     }

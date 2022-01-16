@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using _04_interactions_framework.Modules;
 using Discord;
+using VirtualRamenDiscordBot.Channels.Generators.Base;
+using VirtualRamenDiscordBot.Channels.Generators.Messages.Base;
+using VirtualRamenDiscordBot.Channels.Roles.SelectableRoles.Base;
+using VirtualRamenDiscordBot.Modules;
 
-namespace _04_interactions_framework.Channels
+namespace VirtualRamenDiscordBot.Channels.Roles
 {
+    /// <summary>
+    /// Generates the Role channel, which is responsible for generating the messages used to automatically assign roles to users based on emotes.
+    /// </summary>
     public class RolesChannel : ChannelGenerator
     {
         public override ChannelsEnum ChannelsEnum => ChannelsEnum.Roles;

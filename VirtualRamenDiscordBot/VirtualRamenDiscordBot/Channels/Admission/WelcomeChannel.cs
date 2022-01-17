@@ -32,8 +32,6 @@ namespace VirtualRamenDiscordBot.Channels.Admission
                 // Make sure its not null
                 ThumbnailUrl = "https://drive.google.com/uc?id=1xbB_JTOWFeuVhMD1VpvYyN_j-ByYTXjR"
             });
-
-
             
             messageContainer.AddEmbed(new EmbedBuilder
             {

@@ -15,7 +15,6 @@ namespace VirtualRamenDiscordBot.Services
     /// </summary>
     public class AdmissionService : ReactionService
     {
-        
         public override ulong ChannelId => ChannelConstants.Admission;
         
         public const string AdmittedRoleName = "Membre";
@@ -31,6 +30,9 @@ namespace VirtualRamenDiscordBot.Services
 
             AdmittedRole ??= user.Guild.Roles.FirstOrDefault(r => r.Name == AdmittedRoleName);
             await user.AddRoleAsync(AdmittedRole);
+
+            await user.SendMessageAsync("You are now a member of the Virtual Ramen Discord Server.");
+
         }
 
         public override Task ReactionRemoved(Cacheable<IMessageChannel, ulong> channel, SocketGuildUser user, SocketReaction reaction)

@@ -47,7 +47,8 @@ namespace VirtualRamenDiscordBot.Modules
                 }
             }
         }
-
+        
+     
         private async Task OnReactionAdded(Cacheable<IUserMessage, ulong> message,
             Cacheable<IMessageChannel, ulong> channel,
             SocketReaction reaction)
@@ -60,9 +61,15 @@ namespace VirtualRamenDiscordBot.Modules
             {
                 if (roleUpdaterService.ChannelId == channel.Id)
                 {
+                    if (!roleUpdaterService.AcceptFromBot && r.IsBot)
+                    {
+                        return;
+                    }
+
                     await roleUpdaterService.ReactionAdded(channel, r, reaction);
                 }
             }
         }
     }
+
 }

@@ -15,7 +15,7 @@ namespace VirtualRamenDiscordBot.Channels.Roles.SelectableRoles
             Title = Name,
             Description =
                 "**Des moments chill seront organisés autour d'un Feu de Camp où chacun racontera des histoires afin de partager un bon moment entre amis.**",
-            Color = Color.Red,
+            Color = new Color(255,0,0),
             ThumbnailUrl = "https://cdn.discordapp.com/emojis/846139999925698560.png?v=1"
         };
     }

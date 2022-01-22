@@ -45,8 +45,17 @@ namespace VirtualRamenDiscordBot.Modules
         [RequireOwner]
         public async Task Regen(ChannelsEnum channelsToUpdate)
         {
+
+        
+            
             foreach (ChannelGenerator channelGenerator in Channels)
             {
+                
+                try
+                {
+                
+             
+                
                 int skipped = 0;
 
                 if (channelsToUpdate != ChannelsEnum.All && channelsToUpdate != channelGenerator.Channel.ChannelsEnum)
@@ -62,22 +71,37 @@ namespace VirtualRamenDiscordBot.Modules
 
                 Console.WriteLine("Updating channel '" + c.Name + "'. Deleting all messages...");
 
-                await ReplyAsync("Updating channel '" + c.Name + "'.");
-                await c.DeleteAllMessages();
+                await ReplyAsync("Updating channel '" + c.Name + "'. Deleting all messages : " +
+                                 channelGenerator.DeleteAllMessages);
+
+                if (channelGenerator.DeleteAllMessages)
+                {
+                    await c.DeleteAllMessages();
+                }
 
                 SocketTextChannel channel = (SocketTextChannel) c;
 
-                Console.WriteLine("Updating channel information...");
-                await channel.ModifyAsync(prop =>
+               
+
+
+                if (channel.Name != channelGenerator.Channel.Name || channel.Topic != channelGenerator.Channel.Topic)
                 {
-                    prop.Name = channelGenerator.Channel.Name;
-                    prop.Topic = channelGenerator.Channel.Topic;
-                });
+                    Console.WriteLine("Updating channel information...");
+                    
+                    await channel.ModifyAsync(prop =>
+                    {
+                        prop.Name = channelGenerator.Channel.Name;
+                        prop.Topic = channelGenerator.Channel.Topic;
+                    });
+                }
 
                 MessageContainer m = new MessageContainer();
                 channelGenerator.PopulateMessages(m);
 
-                await ReplyAsync("Found " + m.Messages.Count + " message(s) to send.");
+                if (m.Messages.Count > 0)
+                {
+                    await ReplyAsync("Found " + m.Messages.Count + " message(s) to send.");
+                }
 
                 foreach (var message in m.Messages)
                 {
@@ -116,12 +140,15 @@ namespace VirtualRamenDiscordBot.Modules
                         await ReplyAsync("Error while sending message : '" + message.ToString() + "'.");
                     }
                 }
+                
+                } catch (Exception e)
+                {
+                    Console.WriteLine("Error while updating channel '" + channelGenerator.Channel.Name + "' : " + e.Message);
+                    await ReplyAsync("Error while updating channel '" + channelGenerator.Channel.Name + "' : " + e.Message);
+                }
             }
-
 
             await ReplyAsync("Regen completed.");
         }
     }
-
-    
 }

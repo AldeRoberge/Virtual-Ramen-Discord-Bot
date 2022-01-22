@@ -10,6 +10,7 @@
         Welcome,
         Rules,
         Admission,
+        Discussion,
         All
     }
 }

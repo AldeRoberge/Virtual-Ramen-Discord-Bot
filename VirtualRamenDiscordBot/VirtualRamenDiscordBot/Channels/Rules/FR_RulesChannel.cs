@@ -2,34 +2,27 @@
 using Discord;
 using VirtualRamenDiscordBot.Channels.Base;
 using VirtualRamenDiscordBot.Channels.Base.Messages.Base;
+using VirtualRamenDiscordBot.Channels.Rules.Core;
 using VirtualRamenDiscordBot.Utils;
 
 namespace VirtualRamenDiscordBot.Channels.Rules
 {
-    public class Rule
-    {
-        public string Description { get; set; }
-
-        public Rule(string description)
-        {
-            Description = description;
-        }
-    }
-
     /// <summary>
     /// Generates the Welcome channel, which invites user to read the rules and participate in the server.
     /// </summary>
-    public class RulesChannel : ChannelGenerator
+    public class FR_RulesChannel : RulesChannel
     {
+        public override bool DeleteAllMessages => true;
+
         public override Channel Channel => new()
         {
-            Id = ChannelConstants.Rules,
-            Name = "「📃」règlements",
-            Topic = "La liste des règles du serveur",
+            Id = ChannelConstants.FR_Rules,
+            Name = "『📚』𝗥è𝗴𝗹𝗲𝗺𝗲𝗻𝘁𝘀",
+            Topic = "La liste des règles du serveur.",
             ChannelsEnum = ChannelsEnum.Rules
         };
 
-        public List<Rule> Rules = new()
+        public override List<Rule> Rules => new()
         {
             new Rule(
                 "Le respect de l'utilité de chaque salon textuel ou vocal est primordial, si la fonction d'un channel n'est pas respecté l'équipe de modération se garde le droit de vous sanctionner."),
@@ -53,25 +46,25 @@ namespace VirtualRamenDiscordBot.Channels.Rules
                 "Toute tentative de contournement des règles amènera à minima un doublement de la sanction de base."),
         };
 
+
         public override void PopulateMessages(MessageContainer messageContainer)
         {
-            messageContainer.AddImage("Channels/Rules/Rules.png");
+            // Add the welcome image
+            messageContainer.AddImage("Channels/Welcome/Welcome.png");
 
-            var colors = GradientGenerator.GetColors(Color.Green, Color.Blue, Rules.Count);
-
-            for (int i = 0; i < Rules.Count; i++)
+            base.PopulateMessages(messageContainer);
+            
+            messageContainer.AddSeparator();
+            
+            messageContainer.AddEmbed(new EmbedBuilder
             {
-                // Gets the rule
-                var rule = Rules[i];
-
-                messageContainer.AddEmbed(new EmbedBuilder
-                {
-                    Title = "Article " + (i + 1),
-                    Description = rule.Description,
-                    Color = colors[i]
-                });
-            }
-
+                Title = "J'accèpte les règements",
+                Description =
+                    "Dès lors que vous interagissez avec notre contenu vous déclarez avoir **lu, compris et accepté** les règlements. **Vous ne pouvez pas prétendre de ne pas le connaître.**",
+                Color = new Color(0xFF0000),
+                // Make sure its not null
+                ThumbnailUrl = "https://drive.google.com/uc?id=1xbB_JTOWFeuVhMD1VpvYyN_j-ByYTXjR"
+            }).AddEmoji("🩸");
         }
     }
 }

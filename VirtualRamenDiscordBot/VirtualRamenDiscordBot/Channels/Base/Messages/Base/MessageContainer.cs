@@ -38,5 +38,11 @@ namespace VirtualRamenDiscordBot.Channels.Base.Messages.Base
 
             return msg;
         }
+
+        // Utility method to add an horizontal separator
+        public void AddSeparator()
+        {
+            AddText(TextConstants.HorizontalSeparator);
+        }
     }
 }

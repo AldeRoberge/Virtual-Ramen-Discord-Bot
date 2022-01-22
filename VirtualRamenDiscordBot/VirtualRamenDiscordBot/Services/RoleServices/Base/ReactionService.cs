@@ -10,12 +10,12 @@ namespace VirtualRamenDiscordBot.Services.RoleServices.Base
     public abstract class ReactionService
     {
         public abstract ulong ChannelId { get; }
-        
+        public virtual bool AcceptFromBot => false;
+
         public abstract Task ReactionAdded(Cacheable<IMessageChannel, ulong> channel, SocketGuildUser user,
             SocketReaction reaction);
-        
+
         public abstract Task ReactionRemoved(Cacheable<IMessageChannel, ulong> channel, SocketGuildUser user,
             SocketReaction reaction);
-        
     }
 }

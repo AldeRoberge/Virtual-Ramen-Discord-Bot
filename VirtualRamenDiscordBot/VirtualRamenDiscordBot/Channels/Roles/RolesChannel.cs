@@ -16,6 +16,10 @@ namespace VirtualRamenDiscordBot.Channels.Roles
     /// </summary>
     public class RolesChannel : ChannelGenerator
     {
+        
+        
+        public override bool DeleteAllMessages => true;
+        
         public override Channel Channel => new()
         {
             Id = ChannelConstants.Roles,

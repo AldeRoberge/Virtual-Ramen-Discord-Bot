@@ -11,10 +11,14 @@ namespace VirtualRamenDiscordBot.Channels.Base
     {
         public abstract Channel Channel { get; }
 
+        public abstract bool DeleteAllMessages { get; }
 
         /// <summary>
         /// Passes messageContainer to be filled with Messages.
         /// </summary>
         public abstract void PopulateMessages(MessageContainer messageContainer);
+        
+        
+        
     }
 }

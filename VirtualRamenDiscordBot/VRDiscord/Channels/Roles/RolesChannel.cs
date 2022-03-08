@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Discord;
 using VRDiscord.Channels.Base;
+using VRDiscord.Channels.Base.Messages;
 using VRDiscord.Channels.Base.Messages.Base;
 using VRDiscord.Channels.Roles.SelectableRoles.Base;
 using VRDiscord.Channels.Roles.SelectableRoles.LanguageRoles.Base;
@@ -14,16 +15,14 @@ namespace VRDiscord.Channels.Roles
     /// </summary>
     public class RolesChannel : ChannelGenerator
     {
-        
-        
         public override bool DeleteAllMessages => true;
-        
+
         public override Channel Channel => new()
         {
             Id = ChannelConstants.Roles,
             Name = "「🔎」rôles",
             Topic = "Permet de sélectionner ses propres rôles.",
-            ChannelsEnum = ChannelsEnum.Roles
+            Channels = Channels.Roles
         };
 
         public static List<SelectableRole> SelectableRoles;
@@ -44,28 +43,35 @@ namespace VRDiscord.Channels.Roles
 
             int i = 0;
 
-            List<LanguageRole> languageRoles = new List<LanguageRole>();
+            List<LanguageSelectableRole> languageRoles = new List<LanguageSelectableRole>();
 
             foreach (SelectableRole selectableRole in SelectableRoles)
             {
-                if (selectableRole is LanguageRole languageRole)
+                if (selectableRole is LanguageSelectableRole languageRole)
                 {
                     languageRoles.Add(languageRole);
                 }
                 else
                 {
                     Console.WriteLine("Adding Role : " + selectableRole.Name);
-                    messageContainer.AddEmbed(selectableRole.EmbedBuilder.WithColor(colors[i]))
-                        .AddEmoji(selectableRole.Emote);
+                    messageContainer.AddEmbed(selectableRole.EmbedBuilder.WithColor(colors[i]));
                 }
 
                 i++;
             }
 
-            foreach (LanguageRole languageRole in languageRoles)
+            foreach (LanguageSelectableRole languageRole in languageRoles)
             {
                 messageContainer.AddEmbed(languageRole.EmbedBuilder)
                     .AddEmoji(languageRole.Emote);
+            }
+
+            TextMessage text = messageContainer.AddText("React here to select your role.");
+
+            // Add the emojis
+            foreach (SelectableRole selectableRole in SelectableRoles)
+            {
+                text.AddEmoji(selectableRole.Emote);
             }
         }
     }

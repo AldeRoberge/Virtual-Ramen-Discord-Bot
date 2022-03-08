@@ -15,6 +15,7 @@
         public const ulong EN_Welcome = 934503107591815279;
         
         
+        public const ulong Languages = 950590588804288544;
         public const ulong Roles = 932152430999789628;
         public const ulong Admission = 932203788855554049;
         

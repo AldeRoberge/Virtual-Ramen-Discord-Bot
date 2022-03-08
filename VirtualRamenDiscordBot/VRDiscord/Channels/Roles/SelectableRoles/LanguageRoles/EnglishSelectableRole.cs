@@ -3,7 +3,7 @@ using VRDiscord.Channels.Roles.SelectableRoles.LanguageRoles.Base;
 
 namespace VRDiscord.Channels.Roles.SelectableRoles.LanguageRoles
 {
-    public class EnglishRole : LanguageRole
+    public class EnglishSelectableRole : LanguageSelectableRole
     {
         public override string Name => "English";
         public override IEmote Emote => new Emoji("🇺🇸");

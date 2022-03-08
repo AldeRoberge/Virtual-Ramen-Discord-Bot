@@ -37,3 +37,4 @@ C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot
 C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot\VRDiscord\obj\Debug\net6.0\ref\VRDiscord.dll
 C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot\VRDiscord\obj\Debug\net6.0\VRDiscord.pdb
 C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot\VRDiscord\obj\Debug\net6.0\VRDiscord.genruntimeconfig.cache
+C:\Users\rotmg\Documents\GitHub\Virtual-Ramen-Discord-Bot\VirtualRamenDiscordBot\VRDiscord\bin\Debug\net6.0\Figgle.dll

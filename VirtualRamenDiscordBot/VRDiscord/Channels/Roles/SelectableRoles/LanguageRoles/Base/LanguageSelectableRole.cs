@@ -3,7 +3,7 @@ using VRDiscord.Channels.Roles.SelectableRoles.Base;
 
 namespace VRDiscord.Channels.Roles.SelectableRoles.LanguageRoles.Base
 {
-    public abstract class LanguageRole : SelectableRole
+    public abstract class LanguageSelectableRole : SelectableRole
     {
         public abstract string LocalizedDescription { get; }
 

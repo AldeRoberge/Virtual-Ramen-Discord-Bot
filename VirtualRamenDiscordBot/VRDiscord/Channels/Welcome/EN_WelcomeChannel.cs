@@ -18,7 +18,7 @@ namespace VRDiscord.Channels.Welcome
             Id = ChannelConstants.EN_Welcome,
             Name = "『👋』𝗪𝗲𝗹𝗰𝗼𝗺𝗲",
             Topic = "Welcome to the Virtual Ramen Discord Server!",
-            ChannelsEnum = ChannelsEnum.Welcome
+            Channels = Channels.Welcome
         };
 
         public override List<Website> Websites => new()

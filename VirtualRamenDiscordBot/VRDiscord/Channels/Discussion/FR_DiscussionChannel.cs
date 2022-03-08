@@ -12,7 +12,7 @@ namespace VRDiscord.Channels.Discussion
             Id = ChannelConstants.DiscussionFR,
             Name = "『🌍』𝐃𝐢𝐬𝐜𝐮𝐬𝐬𝐢𝐨𝐧",
             Topic = "Discussion générale",
-            ChannelsEnum = ChannelsEnum.Discussion
+            Channels = Channels.Discussion
         };  
 
         public override void PopulateMessages(MessageContainer messageContainer)

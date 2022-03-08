@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Interactions;
 using Discord.WebSocket;
+using Figgle;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -29,14 +30,12 @@ namespace VRDiscord
 
         static async Task RunAsync(IConfiguration configuration)
         {
-            Console.WriteLine("Loggign with the token : " + configuration["token"]);
+            Console.WriteLine("Is Debug : " + IsDebug());
 
             // Dependency injection is a key part of the Interactions framework but it needs to be disposed at the end of the app's lifetime.
             using var services = ConfigureServices(configuration);
 
             var client = services.GetRequiredService<DiscordAPI>();
-
-
             var commands = services.GetRequiredService<InteractionService>();
 
             client.Log += LogAsync;
@@ -65,14 +64,23 @@ namespace VRDiscord
 
             // Bot token can be provided from the Configuration object we set up earlier
 
-            Console.WriteLine("Loggign with the token : " + configuration["token"]);
+            if (IsDebug())
+            {
+                Console.WriteLine(FiggleFonts.Standard.Render("We're runnin' on DEBUG!"));
+                await client.LoginAsync(TokenType.Bot, configuration["token_dev"]);
+            }
+            else
+            {
+                await client.LoginAsync(TokenType.Bot, configuration["token_prod"]);
+            }
 
-            await client.LoginAsync(TokenType.Bot, configuration["token"]);
+
             await client.StartAsync();
 
 
             await Task.Delay(Timeout.Infinite);
         }
+
 
         static Task LogAsync(LogMessage message)
         {
@@ -103,7 +111,7 @@ namespace VRDiscord
 #if DEBUG
             return true;
 #else
-                return false;
+            return false;
 #endif
         }
     }

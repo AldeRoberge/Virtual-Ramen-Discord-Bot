@@ -18,7 +18,7 @@ namespace VRDiscord.Channels.Rules
             Id = ChannelConstants.EN_Rules,
             Name = "『📚』𝗥𝘂𝗹𝗲𝘀",
             Topic = "List of rules of the server.",
-            ChannelsEnum = ChannelsEnum.Rules
+            Channels = Channels.Rules
         };
 
         public override List<Rule> Rules => new()

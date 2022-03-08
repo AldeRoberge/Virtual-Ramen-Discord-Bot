@@ -16,7 +16,7 @@ namespace VRDiscord.Channels.Base.Messages.Base
             Messages.Add(m);
         }
 
-        public Message AddEmbed(EmbedBuilder embedBuilder)
+        public EmbedMessage AddEmbed(EmbedBuilder embedBuilder)
         {
             var msg = new EmbedMessage(embedBuilder);
             Messages.Add(msg);
@@ -24,7 +24,7 @@ namespace VRDiscord.Channels.Base.Messages.Base
             return msg;
         }
 
-        public Message AddText(string text)
+        public TextMessage AddText(string text)
         {
             var msg = new TextMessage(text);
             Messages.Add(msg);
@@ -32,7 +32,7 @@ namespace VRDiscord.Channels.Base.Messages.Base
             return msg;
         }
 
-        public Message AddImage(string imageUrl)
+        public ImageMessage AddImage(string imageUrl)
         {
             var msg = new ImageMessage(imageUrl);
             Messages.Add(msg);

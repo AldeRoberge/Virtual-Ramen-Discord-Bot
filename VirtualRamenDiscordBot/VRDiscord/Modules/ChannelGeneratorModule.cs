@@ -42,108 +42,95 @@ namespace VRDiscord.Modules
         // Slash Commands are declared using the [SlashCommand], you need to provide a name and a description, both following the Discord guidelines
         [SlashCommand("regen", "Regens the channels")]
         [Utils.RequireOwner]
-        public async Task Regen(ChannelsEnum channelsToUpdate)
+        public async Task Regen(Channels.Channels channelsToUpdate)
         {
-
-        
-            
-            foreach (ChannelGenerator channelGenerator in Channels)
+            foreach (ChannelGenerator chanel in Channels)
             {
-                
                 try
                 {
-                
-             
-                
-                int skipped = 0;
-
-                if (channelsToUpdate != ChannelsEnum.All && channelsToUpdate != channelGenerator.Channel.ChannelsEnum)
-                {
-                    skipped++;
-                    continue;
-                }
-
-
-                // DiscordAPI
-                IMessageChannel c = _client.GetChannelById(channelGenerator.Channel.Id);
-
-
-                Console.WriteLine("Updating channel '" + c.Name + "'. Deleting all messages...");
-
-                await ReplyAsync("Updating channel '" + c.Name + "'. Deleting all messages : " +
-                                 channelGenerator.DeleteAllMessages);
-
-                if (channelGenerator.DeleteAllMessages)
-                {
-                    await c.DeleteAllMessages();
-                }
-
-                SocketTextChannel channel = (SocketTextChannel) c;
-
-               
-
-
-                if (channel.Name != channelGenerator.Channel.Name || channel.Topic != channelGenerator.Channel.Topic)
-                {
-                    Console.WriteLine("Updating channel information...");
-                    
-                    await channel.ModifyAsync(prop =>
+                    if (channelsToUpdate != VRDiscord.Channels.Channels.All && channelsToUpdate != chanel.Channel.Channels)
                     {
-                        prop.Name = channelGenerator.Channel.Name;
-                        prop.Topic = channelGenerator.Channel.Topic;
-                    });
-                }
+                        continue;
+                    }
 
-                MessageContainer m = new MessageContainer();
-                channelGenerator.PopulateMessages(m);
+                    // DiscordAPI
+                    IMessageChannel c = _client.GetChannelById(chanel.Channel.Id);
 
-                if (m.Messages.Count > 0)
-                {
-                    await ReplyAsync("Found " + m.Messages.Count + " message(s) to send.");
-                }
+                    await ReplyAsync("Updating channel '" + c.Name + "'.");
 
-                foreach (var message in m.Messages)
-                {
-                    try
+                    if (chanel.DeleteAllMessages)
                     {
-                        IUserMessage resultMsg = null;
+                        await ReplyAsync("Deleting all messages.");
+                        await c.DeleteAllMessages();
+                    }
 
-                        switch (message)
-                        {
-                            case ImageMessage imageMessage:
-                                resultMsg = await c.SendFileAsync(imageMessage.ImagePath);
-                                break;
-                            case TextMessage textMessage:
-                                resultMsg = await c.SendMessageAsync(textMessage.Text);
-                                break;
-                            case EmbedMessage embedMessage:
-                                resultMsg = await c.SendMessageAsync(embedMessage.Text, false,
-                                    embedMessage.EmbedBuilder.Build());
-                                break;
-                            default:
-                                Console.WriteLine("Error, unknown type of message : " + typeof(Message) + ".");
-                                break;
-                        }
+                    SocketTextChannel channel = (SocketTextChannel)c;
 
-                        if (resultMsg != null)
+                    if (channel.Name != chanel.Channel.Name ||
+                        channel.Topic != chanel.Channel.Topic)
+                    {
+                        Console.WriteLine("Updating outdated channel information...");
+
+                        await channel.ModifyAsync(prop =>
                         {
-                            // Adds the reactions for the message
-                            foreach (var messageEmote in message.Emotes)
+                            prop.Name = chanel.Channel.Name;
+                            prop.Topic = chanel.Channel.Topic;
+                        });
+                    }
+
+                    // Start building the messages
+                    MessageContainer m = new MessageContainer();
+                    chanel.PopulateMessages(m);
+
+                    if (m.Messages.Count > 0)
+                    {
+                        await ReplyAsync("Found " + m.Messages.Count + " message(s) to send.");
+                    }
+
+                    foreach (var message in m.Messages)
+                    {
+                        try
+                        {
+                            IUserMessage resultMsg = null;
+
+                            switch (message)
                             {
-                                await resultMsg.AddReactionAsync(messageEmote);
+                                case ImageMessage imageMessage:
+                                    resultMsg = await c.SendFileAsync(imageMessage.ImagePath);
+                                    break;
+                                case TextMessage textMessage:
+                                    resultMsg = await c.SendMessageAsync(textMessage.Text);
+                                    break;
+                                case EmbedMessage embedMessage:
+                                    resultMsg = await c.SendMessageAsync(embedMessage.Text, false,
+                                        embedMessage.EmbedBuilder.Build());
+                                    break;
+                                default:
+                                    Console.WriteLine("Error, unknown type of message : " + typeof(Message) + ".");
+                                    break;
+                            }
+
+                            if (resultMsg != null)
+                            {
+                                // Adds the reactions for the message
+                                foreach (var messageEmote in message.Emotes)
+                                {
+                                    await resultMsg.AddReactionAsync(messageEmote);
+                                }
                             }
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        await ReplyAsync("Error while sending message : '" + message.ToString() + "'.");
+                        catch (Exception e)
+                        {
+                            await ReplyAsync("Error (" + e.Message + ") while sending message : '" + message + "'.");
+                        }
                     }
                 }
-                
-                } catch (Exception e)
+                catch (Exception e)
                 {
-                    Console.WriteLine("Error while updating channel '" + channelGenerator.Channel.Name + "' : " + e.Message);
-                    await ReplyAsync("Error while updating channel '" + channelGenerator.Channel.Name + "' : " + e.Message);
+                    Console.WriteLine("Error while updating channel '" + chanel.Channel.Name + "' : " +
+                                      e.Message);
+                    await ReplyAsync("Error while updating channel '" + chanel.Channel.Name + "' : " +
+                                     e.Message);
                 }
             }
 
